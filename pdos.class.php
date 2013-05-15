@@ -211,7 +211,7 @@ class pdos {
         return $return;
     }
 
-    public function select_single($table, $columns, $where=false, $like=false, $misc=false){
+    public function single($table, $columns, $where=false, $like=false, $misc=false){
         //perform a query that will return only a single row, return false if no rows
         //accepts either string or array for columns
         //like takes array and the % should be included where you want it in the value
