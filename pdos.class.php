@@ -10,9 +10,9 @@ class pdos {
     private $pass     = ""; //database login password
     private $database = ""; //database name
 
-    private $dbh;
+    public $dbh;
 
-    private function __construct($server=null, $user=null, $pass=null, $database=null) {
+    private function __construct($server=null, $database=null, $user=null, $pass=null) {
         if ( $server == null || $user == null || $pass == null || $database == null ) {
             throw new Exception("Connection information must be passed in when the object is first created.");
         }
@@ -28,7 +28,7 @@ class pdos {
         }
     }
 
-    public static function obtain($server=null, $user=null, $pass=null, $database=null) {
+    public static function obtain($server=null, $database=null, $user=null, $pass=null) {
         //get the PDO handle
         if ( !self::$singleton ) {
             self::$singleton = new pdos($server, $user, $pass, $database);
@@ -37,10 +37,10 @@ class pdos {
         return self::$singleton->dbh;
     }
 
-    public static function pass($server=null, $user=null, $pass=null, $database=null){
+    public static function pass($server=null, $database=null, $user=null, $pass=null){
         //get this class itself
         if ( !self::$singleton ) {
-            self::$singleton = new pdos($server, $user, $pass, $database);
+            self::$singleton = new pdos($server, $database, $user, $pass);
         }
 
         return self::$singleton;
